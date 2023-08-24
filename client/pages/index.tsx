@@ -13,7 +13,7 @@ export default function Home() {
         {signUp ?
         <SignupForm  />
         :
-        <SigninForm />}
+        <SigninForm nextPage="/client" />}
       </section>
     </div>
   )
