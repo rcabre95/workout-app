@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { supabase } from "../lib/initSupabase";
 
-export function SigninForm() {
+export function SigninForm({ nextPage }: { nextPage: string }) {
   const router = useRouter()
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -18,7 +18,7 @@ export function SigninForm() {
 
     if (data) {
       console.log(data)
-      router.push("/client")
+      router.push(nextPage)
     }
   };
 
@@ -36,7 +36,7 @@ export function SigninForm() {
       <input id='passwordInput' type="password" {...register("password", {
         required: "Please enter your password"
       })} />
-      <button type="submit">Sign up</button>
+      <button type="submit">Sign in</button>
     </form>
   )
 }
