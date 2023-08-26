@@ -9,7 +9,7 @@ export type Database = MergeDeep<DatabaseGenerated, {
         Row: {
           bodyfat: number | null
           coach_id: string | null
-          created_at: string
+          dob: string | null
           email: string | null
           first_name: string
           height: number
@@ -28,16 +28,16 @@ export type Database = MergeDeep<DatabaseGenerated, {
         Insert: {
           bodyfat?: number | null
           coach_id?: string | null
-          created_at?: string
+          dob?: string | null
           email?: string | null
           first_name: string
           height: number
           id: string
           last_name: string
-          max_bench?: number
-          max_deadlift?: number
-          max_ohp?: number
-          max_squat?: number
+          max_bench: number
+          max_deadlift: number
+          max_ohp: number
+          max_squat: number
           phone_number?: string | null
           pro_member?: boolean
           profile_photo?: string | null
@@ -47,7 +47,7 @@ export type Database = MergeDeep<DatabaseGenerated, {
         Update: {
           bodyfat?: number | null
           coach_id?: string | null
-          created_at?: string
+          dob?: string | null
           email?: string | null
           first_name?: string
           height?: number
