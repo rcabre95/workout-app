@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
+import { AccountType } from "../../pages/onboard";
 
-export default function TrainerOnboarding() {
+export default function TrainerOnboarding({ accType, updateSupabaseAccType }: { accType: AccountType, updateSupabaseAccType: () => Promise<void> }) {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const submit = async (formData: any) => {
+        await updateSupabaseAccType()
         console.log(formData);
     }
 
@@ -17,8 +19,8 @@ export default function TrainerOnboarding() {
                     message: "Your first name must contain at least 2 characters."
                 },
                 maxLength: {
-                    value: 30,
-                    message: "Your first name must contain no more than 30 characters."
+                    value: 40,
+                    message: "Your first name must contain no more than 40 characters."
                 }
             })} />
 
@@ -30,8 +32,8 @@ export default function TrainerOnboarding() {
                     message: "Your last name must contain at least 2 characters."
                 },
                 maxLength: {
-                    value: 30,
-                    message: "Your last name must contain no more than 30 characters."
+                    value: 40,
+                    message: "Your last name must contain no more than 40 characters."
                 }
             })} />
 
