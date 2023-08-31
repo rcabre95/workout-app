@@ -2,12 +2,18 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { supabase } from "../lib/initSupabase";
 import { useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "../pages/_app";
+import { IUserMetadata } from "../lib/types/user-metadata";
 
 export function SigninForm({ nextPage }: { nextPage: string }) {
-  const router = useRouter()
-  const [loginError, setLoginError] = useState<string | null>(null)
+  const router = useRouter();
+  const [loginError, setLoginError] = useState<string | null>(null);
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { setLoggedIn } = useContext(UserContext)
+
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
   const submitSignin = async (formData:any) => {
     const { data, error } = await supabase.auth.signInWithPassword({
       email: formData.email,
@@ -17,8 +23,12 @@ export function SigninForm({ nextPage }: { nextPage: string }) {
     if (error) {
       setLoginError(error.message)
     }
- 
+
     if (data.session?.user) {
+      setLoggedIn({
+        userId: data.session.user.id,
+        userAccType: data.session.user.user_metadata.accnt_type
+      })
       console.log(data.session);
       router.push("/dashboard")
     }

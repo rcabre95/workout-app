@@ -118,6 +118,7 @@ export default function ClientOnboarding({ userId, accType, updateSupabaseAccTyp
                 <option value="m">Male</option>
                 <option value="o">Other</option>
             </select>
+            <span>{errors.sex ? JSON.stringify(errors.sex) : null}</span>
 
             <label htmlFor="heightInput">Height</label>
             <input className="border-1 border-green-600" type="number" id="heightInput" {...register("height", {
@@ -167,6 +168,7 @@ export default function ClientOnboarding({ userId, accType, updateSupabaseAccTyp
                 }
             })}
             />
+            <span>{errors.bodyfat ? JSON.stringify(errors.bodyfat) : null}</span>
 
             <label htmlFor="maxSquatInput">Max Squat</label>
             <p>You can enter 0 if you don&apos;t know. This can be figured out and entered in later.</p>
@@ -205,7 +207,8 @@ export default function ClientOnboarding({ userId, accType, updateSupabaseAccTyp
 
             <label htmlFor="maxDeadliftInput">Max Deadlift</label>
             <p>You can enter 0 if you don&apos;t know. This can be figured out and entered in later.</p>
-            <input className="border-1 border-green-600" type="number" id="maxDeadliftInput" {...register("max_deadlift", {
+            <input className="border-1 border-green-600" type="number" id="maxDeadliftInput"
+            {...register("max_deadlift", {
                 valueAsNumber: true,
                 required: "Please enter the weight of your biggest deadlift.",
                 min: {
